@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Word Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/main.css" rel="stylesheet">
+  <script src="js/main.js" type="module"></script>
+</head>
+
+<body>
+
+  <div class="info">
+    <h1 class="title">
+      <code>Word</code> Game
+    </h1>
+    <p class="info-text">
+      Type the words before they reach the bottom.<br>
+      <code>Enter</code> / <code>Space</code> to clear the input, <code>Backspace</code> to remove a letter.<br>
+      You have <code>3</code> lives, you lose a life for each word that reaches the bottom of the screen.
+    </p>
+    <button class="start-btn">START</button>
+    <p class="info-text small">
+      Every word in this game is from the list of most used passwords.<br>
+      If you see one of your passwords here, you should really change it!
+    </p>
+  </div>
+
+  <div class="points">
+    <div class="points-label">Points:</div>
+    <div class="points-count">0</div>
+  </div>
+
+  <div class="lives">
+    <div>Lives</div>
+    <div class="hearts">
+      <i class="nf nf-fa-heart life-1"></i>
+      <i class="nf nf-fa-heart life-2"></i>
+      <i class="nf nf-fa-heart life-3"></i>
+    </div>
+  </div>
+
+  <div class="user-input"></div>
+
+</body>
+
+</html>
