@@ -5,9 +5,24 @@ import {
   Heart3,
 } from './constants.js';
 
-const GameState = {
+const Difficulties = {
+  easy: {
+    name: 'easy',
+    time: 30,
+  },
+  medium: {
+    name: 'medium',
+    time: 25,
+  },
+  hard: {
+    name: 'hard',
+    time: 20,
+  },
+}
+
+let GameState = {
   gameInterval: null,
-  difficulties: ['easy', 'medium', 'hard'],
+  selectedDifficulty: Difficulties.easy,
   completedWords: [],
   failedWords: [],
   visibleWords: [],
@@ -45,7 +60,7 @@ const RemoveHeart = () => {
 const GameOver = () => {
   clearInterval(GameState.gameInterval);
   GameState.visibleWords.map((word) => {
-    word.div.remove();
+    word.self.remove();
   });
 
   GameState.visibleWords = [];

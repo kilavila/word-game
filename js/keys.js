@@ -10,76 +10,48 @@ const KeysListener = () => {
     event.preventDefault();
 
     if (event.key === 'Enter' || event.key === ' ') {
-      ClearInput();
+      _gs.visibleWords.map(word => {
+        if (!word.completed) {
+          if (word.self.word === _gs.userInput) {
+            word.self.completed = true;
+            WordCompleted(word);
+          }
+        }
+      });
     } else if (event.key === 'Backspace') {
       RemoveChar();
     } else {
-      ActiveWordCheck(event.key);
-
-      if (_gs.activeWord) {
-        InputCheck(event.key);
-        if (_gs.activeWord.div.innerText === _gs.userInput) WordCompleted();
-      }
+      AddChar(event.key);
     }
   });
-}
-
-const ClearInput = () => {
-  _gs.userInput = '';
-  InputUI.innerText = '';
-  InputUI.classList.remove('correct');
-  InputUI.classList.remove('wrong');
-  if (_gs.activeWord) {
-    _gs.activeWord.div.classList.remove('active');
-    _gs.activeWord = null;
-  }
 }
 
 const RemoveChar = () => {
   _gs.userInput = _gs.userInput.slice(0, -1);
   InputUI.innerText = _gs.userInput;
 
-  if (_gs.activeWord && _gs.activeWord.div.innerText.startsWith(_gs.userInput)) {
-    InputUI.classList.remove('wrong');
-    InputUI.classList.add('correct');
-  } else {
-    InputUI.classList.remove('correct');
-    InputUI.classList.add('wrong');
-  }
-
-  if (_gs.activeWord && _gs.userInput === '') {
-    _gs.activeWord.div.classList.remove('active');
-    _gs.activeWord = null;
-  }
+  CheckWords();
 }
 
-const ActiveWordCheck = (key) => {
-  if (!_gs.activeWord) {
-    _gs.activeWord = _gs.visibleWords.find(word => word.div.innerText.startsWith(key));
+const AddChar = (key) => {
+  _gs.userInput += key;
+  InputUI.innerText = _gs.userInput;
 
-    if (_gs.activeWord) {
-      _gs.activeWord.div.classList.add('active');
+  CheckWords();
+}
+
+const CheckWords = () => {
+  _gs.visibleWords.map(word => {
+    if (!word.completed) {
+      word.self.word.startsWith(_gs.userInput)
+        ? word.self.classList.add('active')
+        : word.self.classList.remove('active');
     }
-  }
+  });
 }
 
-const InputCheck = (key) => {
-  if (key.length == 1) {
-    _gs.userInput += key;
-    InputUI.innerText = _gs.userInput;
-  }
-
-  if (_gs.activeWord.div.innerText.startsWith(_gs.userInput)) {
-    InputUI.classList.remove('wrong');
-    InputUI.classList.add('correct');
-  } else {
-    InputUI.classList.remove('correct');
-    InputUI.classList.add('wrong');
-  }
-}
-
-const WordCompleted = () => {
-  let activeWordPoints = _gs.activeWord.div.innerText.length;
+const WordCompleted = (word) => {
+  let activeWordPoints = word.self.word.length;
   _gs.points += activeWordPoints;
   PointsCounter.innerText = _gs.points;
 
@@ -87,18 +59,12 @@ const WordCompleted = () => {
   pointsDiv.classList.add('points');
   pointsDiv.innerText = `+ ${activeWordPoints}`;
 
-  _gs.activeWord.div.appendChild(pointsDiv);
-  _gs.activeWord.div.classList.add('correct');
+  word.self.classList.add('correct');
+  word.self.appendChild(pointsDiv);
 
-  _gs.completedWords.push(_gs.activeWord.div.innerText);
-  let index = _gs.visibleWords.indexOf(_gs.activeWord);
-  _gs.visibleWords.splice(index, 1);
+  clearTimeout(word.timer);
+  setTimeout(() => word.self.remove(), 750);
 
-  clearTimeout(_gs.activeWord.timer);
-  let previousWord = _gs.activeWord;
-  setTimeout(() => previousWord.div.remove(), 1100);
-
-  _gs.activeWord = null;
   _gs.userInput = '';
   InputUI.innerText = '';
 }

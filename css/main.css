@@ -13,8 +13,8 @@
 }
 
 :root {
-  --time-easy: 24s;
-  --time-medium: 22s;
+  --time-easy: 30s;
+  --time-medium: 25s;
   --time-hard: 20s;
 }
 
@@ -165,11 +165,12 @@ i.nf-fa-heart_o {
 }
 
 .word {
+  display: block;
   position: absolute;
   top: 100%;
   transform: translate(-50%, 0%);
   font-family: "Krypton", monospace;
-  opacity: .45;
+  opacity: 0.5;
 }
 .easy {
   animation: unsolved var(--time-easy) linear;
@@ -213,11 +214,11 @@ i.nf-fa-heart_o {
 
 @keyframes unsolved {
   0% {
-    top: -10%;
+    top: -5%;
     /* color: var(--ctp-blue); */
   }
   100% {
-    top: 100%;
+    top: 95%;
     color: var(--ctp-red);
   }
 }

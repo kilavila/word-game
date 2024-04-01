@@ -26,3 +26,48 @@
   --ctp-mantle: #181825;
   --ctp-crust: #11111b;
 }
+
+.mauve {
+  color: var(--ctp-mauve);
+  text-shadow: 0 0 12px var(--ctp-mauve);
+}
+.red {
+  color: var(--ctp-red);
+  text-shadow: 0 0 12px var(--ctp-red);
+}
+.maroon {
+  color: var(--ctp-maroon);
+  text-shadow: 0 0 12px var(--ctp-maroon);
+}
+.peach {
+  color: var(--ctp-peach);
+  text-shadow: 0 0 12px var(--ctp-peach);
+}
+.yellow {
+  color: var(--ctp-yellow);
+  text-shadow: 0 0 12px var(--ctp-yellow);
+}
+.green {
+  color: var(--ctp-green);
+  text-shadow: 0 0 12px var(--ctp-green);
+}
+.teal {
+  color: var(--ctp-teal);
+  text-shadow: 0 0 12px var(--ctp-teal);
+}
+.sky {
+  color: var(--ctp-sky);
+  text-shadow: 0 0 12px var(--ctp-sky);
+}
+.sapphire {
+  color: var(--ctp-sapphire);
+  text-shadow: 0 0 12px var(--ctp-sapphire);
+}
+.blue {
+  color: var(--ctp-blue);
+  text-shadow: 0 0 12px var(--ctp-blue);
+}
+.lavender {
+  color: var(--ctp-lavender);
+  text-shadow: 0 0 12px var(--ctp-lavender);
+}
