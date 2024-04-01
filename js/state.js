@@ -26,10 +26,10 @@ let GameState = {
   completedWords: [],
   failedWords: [],
   visibleWords: [],
-  activeWord: null,
   userInput: '',
   lives: 3,
   points: 0,
+  multiplier: 1,
 };
 
 const RemoveHeart = () => {
@@ -38,17 +38,17 @@ const RemoveHeart = () => {
   switch (GameState.lives) {
     case 2:
       Heart3.classList.remove('nf-fa-heart');
-      Heart3.classList.add('nf-fa-heart_o');
+      Heart3.classList.add('nf-md-heart_broken');
       break;
 
     case 1:
       Heart2.classList.remove('nf-fa-heart');
-      Heart2.classList.add('nf-fa-heart_o');
+      Heart2.classList.add('nf-md-heart_broken');
       break;
 
     case 0:
       Heart1.classList.remove('nf-fa-heart');
-      Heart1.classList.add('nf-fa-heart_o');
+      Heart1.classList.add('nf-md-heart_broken');
       GameOver();
       break;
 
@@ -60,24 +60,25 @@ const RemoveHeart = () => {
 const GameOver = () => {
   clearInterval(GameState.gameInterval);
   GameState.visibleWords.map((word) => {
+    clearTimeout(word.timer);
     word.self.remove();
   });
 
-  GameState.visibleWords = [];
-  GameState.userInput = '';
-  GameState.activeWord = null;
-  GameState.lives = 3;
   InfoBox.classList.remove('hidden');
 }
 
 const GameReset = () => {
+  GameState.visibleWords = [];
+  GameState.userInput = '';
+  GameState.lives = 3;
+
   InfoBox.classList.add('hidden');
   Heart1.classList.add('nf-fa-heart');
-  Heart1.classList.remove('nf-fa-heart_o');
+  Heart1.classList.remove('nf-md-heart_broken');
   Heart2.classList.add('nf-fa-heart');
-  Heart2.classList.remove('nf-fa-heart_o');
+  Heart2.classList.remove('nf-md-heart_broken');
   Heart3.classList.add('nf-fa-heart');
-  Heart3.classList.remove('nf-fa-heart_o');
+  Heart3.classList.remove('nf-md-heart_broken');
 }
 
 export default GameState;

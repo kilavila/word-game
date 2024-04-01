@@ -20,8 +20,7 @@ class Word extends HTMLElement {
   }
 
   disconnectedCallback() {
-    self.completed = true;
-
+    this.completed = true;
     clearTimeout(this.timer);
   }
 

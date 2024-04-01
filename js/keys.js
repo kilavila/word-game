@@ -13,7 +13,6 @@ const KeysListener = () => {
       _gs.visibleWords.map(word => {
         if (!word.completed) {
           if (word.self.word === _gs.userInput) {
-            word.self.completed = true;
             WordCompleted(word);
           }
         }
@@ -43,7 +42,7 @@ const AddChar = (key) => {
 const CheckWords = () => {
   _gs.visibleWords.map(word => {
     if (!word.completed) {
-      word.self.word.startsWith(_gs.userInput)
+      word.self.word.startsWith(_gs.userInput) && _gs.userInput.length > 0
         ? word.self.classList.add('active')
         : word.self.classList.remove('active');
     }
@@ -62,8 +61,12 @@ const WordCompleted = (word) => {
   word.self.classList.add('correct');
   word.self.appendChild(pointsDiv);
 
+  _gs.completedWords.push(word.self.word);
+  word.self.completed = true;
   clearTimeout(word.timer);
   setTimeout(() => word.self.remove(), 750);
+
+  _gs.visibleWords = _gs.visibleWords.filter(w => w.self !== word.self);
 
   _gs.userInput = '';
   InputUI.innerText = '';
