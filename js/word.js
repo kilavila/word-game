@@ -1,4 +1,4 @@
-import _gs, { RemoveHeart } from './state.js';
+import _gs, { RemoveHeart, SetWordFailed } from './state.js';
 
 class Word extends HTMLElement {
 
@@ -34,9 +34,9 @@ class Word extends HTMLElement {
   counter() {
     this.timer = setTimeout(() => {
       if (!this.completed) {
-        _gs.failedWords.push(self.word);
-        RemoveHeart();
+        SetWordFailed(self.word);
       }
+
       self.remove()
     }, 1000 * this.difficulty.time);
 

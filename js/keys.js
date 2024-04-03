@@ -1,8 +1,7 @@
-import _gs, { CountWord } from './state.js';
+import _gs, { SetWordCompleted } from './state.js';
 import {
   Canvas,
   InputUI,
-  PointsCounter,
 } from './constants.js';
 
 const KeysListener = () => {
@@ -52,9 +51,9 @@ const CheckWords = () => {
 }
 
 const WordCompleted = (word) => {
-  let activeWordPoints = word.self.word.length;
+  let activeWordPoints = word.self.word.length * _gs.multiplier;
 
-  CountWord(word.self.word, activeWordPoints);
+  SetWordCompleted(word.self.word, activeWordPoints);
 
   let pointsDiv = document.createElement('div');
   pointsDiv.classList.add('points');

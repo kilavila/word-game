@@ -24,25 +24,67 @@ const Difficulties = {
 
 let GameState = {
   gameInterval: null,
-  selectedDifficulty: Difficulties.easy,
+  selectedDifficulty: Difficulties.hard,
+  visibleWords: [],
   completedWords: [],
   completedWordsCount: 0,
   failedWords: [],
-  visibleWords: [],
   userInput: '',
   lives: 3,
   points: 0,
+  multiplierController: 0,
   multiplier: 1,
 };
 
-const CountWord = (word, points) => {
+const IncreaseDifficulty = () => {
+  GameState.multiplier += 0.5;
+
+  if (GameState.selectedDifficulty.name === 'hard') {
+    return;
+  }
+
+  if (GameState.selectedDifficulty.name === 'easy') {
+    GameState.selectedDifficulty = Difficulties.medium;
+  } else if (GameState.selectedDifficulty.name === 'medium') {
+    GameState.selectedDifficulty = Difficulties.hard;
+  }
+}
+
+const DecreaseDifficulty = () => {
+  if (GameState.selectedDifficulty.name === 'easy') {
+    return;
+  }
+
+  GameState.multiplier -= 0.5;
+
+  if (GameState.selectedDifficulty.name === 'medium') {
+    GameState.selectedDifficulty = Difficulties.easy;
+  } else if (GameState.selectedDifficulty.name === 'hard') {
+    GameState.selectedDifficulty = Difficulties.medium;
+  }
+}
+
+const SetWordCompleted = (word, points) => {
   GameState.points += points;
   GameState.completedWordsCount++;
+  GameState.multiplierController++;
+
+  if (GameState.multiplierController === 20) {
+    GameState.multiplierController = 0;
+    IncreaseDifficulty();
+  }
 
   PointsCounter.innerText = GameState.points;
   WordCounter.innerText = GameState.completedWordsCount;
 
   GameState.completedWords.push(word);
+}
+
+const SetWordFailed = (word) => {
+  GameState.multiplierController++;
+
+  RemoveHeart();
+  GameState.failedWords.push(word);
 }
 
 const RemoveHeart = () => {
@@ -70,6 +112,11 @@ const RemoveHeart = () => {
   }
 }
 
+const GameSummary = () => {
+  // TODO: Show game summary
+  // completed words, failed words, points
+}
+
 const GameOver = () => {
   clearInterval(GameState.gameInterval);
   GameState.visibleWords.map((word) => {
@@ -77,7 +124,7 @@ const GameOver = () => {
     word.self.remove();
   });
 
-  InfoBox.classList.remove('hidden');
+  GameSummary();
 }
 
 const GameReset = () => {
@@ -96,7 +143,10 @@ const GameReset = () => {
 
 export default GameState;
 export {
-  CountWord,
+  IncreaseDifficulty,
+  DecreaseDifficulty,
+  SetWordCompleted,
+  SetWordFailed,
   RemoveHeart,
   GameOver,
   GameReset,
