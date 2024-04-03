@@ -1,4 +1,4 @@
-import _gs from './state.js';
+import _gs, { CountWord } from './state.js';
 import {
   Canvas,
   InputUI,
@@ -20,7 +20,9 @@ const KeysListener = () => {
     } else if (event.key === 'Backspace') {
       RemoveChar();
     } else {
-      AddChar(event.key);
+      if (event.key.length === 1) {
+        AddChar(event.key);
+      }
     }
   });
 }
@@ -51,8 +53,8 @@ const CheckWords = () => {
 
 const WordCompleted = (word) => {
   let activeWordPoints = word.self.word.length;
-  _gs.points += activeWordPoints;
-  PointsCounter.innerText = _gs.points;
+
+  CountWord(word.self.word, activeWordPoints);
 
   let pointsDiv = document.createElement('div');
   pointsDiv.classList.add('points');
@@ -61,7 +63,6 @@ const WordCompleted = (word) => {
   word.self.classList.add('correct');
   word.self.appendChild(pointsDiv);
 
-  _gs.completedWords.push(word.self.word);
   word.self.completed = true;
   clearTimeout(word.timer);
   setTimeout(() => word.self.remove(), 750);

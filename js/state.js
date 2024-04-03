@@ -3,6 +3,8 @@ import {
   Heart1,
   Heart2,
   Heart3,
+  PointsCounter,
+  WordCounter,
 } from './constants.js';
 
 const Difficulties = {
@@ -24,6 +26,7 @@ let GameState = {
   gameInterval: null,
   selectedDifficulty: Difficulties.easy,
   completedWords: [],
+  completedWordsCount: 0,
   failedWords: [],
   visibleWords: [],
   userInput: '',
@@ -31,6 +34,16 @@ let GameState = {
   points: 0,
   multiplier: 1,
 };
+
+const CountWord = (word, points) => {
+  GameState.points += points;
+  GameState.completedWordsCount++;
+
+  PointsCounter.innerText = GameState.points;
+  WordCounter.innerText = GameState.completedWordsCount;
+
+  GameState.completedWords.push(word);
+}
 
 const RemoveHeart = () => {
   GameState.lives--;
@@ -83,6 +96,7 @@ const GameReset = () => {
 
 export default GameState;
 export {
+  CountWord,
   RemoveHeart,
   GameOver,
   GameReset,

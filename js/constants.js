@@ -8,6 +8,7 @@ const Heart2 = document.querySelector(".life-2");
 const Heart3 = document.querySelector(".life-3");
 const InputUI = document.querySelector(".user-input");
 const PointsCounter = document.querySelector(".points-count");
+const WordCounter = document.querySelector(".completed-words-count");
 
 export {
   DictionaryAPI,
@@ -20,4 +21,5 @@ export {
   Heart3,
   InputUI,
   PointsCounter,
+  WordCounter,
 };
