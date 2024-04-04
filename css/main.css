@@ -37,6 +37,98 @@ body {
   box-shadow: inset 0 30px 50px -50px var(--ctp-blue), inset 0 -30px 50px -50px var(--ctp-red);
 }
 
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.game-over h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 64px;
+  font-weight: normal;
+  color: var(--ctp-red);
+  text-shadow: 0 0 30px var(--ctp-red);
+}
+
+table {
+  display: block;
+  width: 90%;
+  height: 450px;
+  margin: 36px 0;
+  background: var(--ctp-surface0);
+  color: var(--ctp-text);
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+  box-shadow: 0 0 30px var(--ctp-surface0);
+}
+table::-webkit-scrollbar {
+  width: 8px;
+}
+table::-webkit-scrollbar-track {
+  background: var(--ctp-surface0);
+  border-radius: 10px;
+}
+table::-webkit-scrollbar-thumb {
+  background: var(--ctp-surface1);
+  border-radius: 0 10px 10px 0;
+}
+table::-webkit-scrollbar-thumb:hover {
+  background: var(--ctp-surface2);
+}
+thead,
+tbody,
+tfoot,
+tr {
+  display: block;
+  width: 100%;
+}
+thead {
+  position: sticky;
+  top: -1px;
+  background: var(--ctp-surface2);
+}
+tfoot {
+  position: sticky;
+  bottom: -1px;
+  background: var(--ctp-surface0);
+  border-top: 2px solid var(--ctp-surface2);
+}
+tbody {
+  white-space: nowrap;
+}
+tr {
+  display: flex;
+  justify-content: space-between;
+}
+tr:nth-child(even) {
+  background: var(--ctp-surface1);
+}
+th {
+  padding: 16px;
+}
+td {
+  margin: 0;
+  padding: 16px;
+}
+
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
 .info {
   position: absolute;
   top: 50%;
@@ -49,7 +141,7 @@ body {
   text-align: center;
 }
 
-h1 {
+.info h1 {
   margin: 0;
   padding: 0;
   font-size: 64px;
@@ -57,7 +149,7 @@ h1 {
   color: var(--ctp-green);
   text-shadow: 0 0 30px var(--ctp-green);
 }
-h1 code {
+.info h1 code {
   font-size: 64px;
   font-weight: bold;
   color: var(--ctp-rosewater);
