@@ -28,3 +28,7 @@ StartButton.addEventListener('click', () => {
 KeysListener();
 
 customElements.define('word-entry', Word);
+
+particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
+  console.log('callback - particles.js config loaded');
+});

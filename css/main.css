@@ -62,7 +62,8 @@ body {
 table {
   display: block;
   width: 90%;
-  height: 450px;
+  max-width: 750px;
+  max-height: 450px;
   margin: 36px 0;
   background: var(--ctp-surface0);
   color: var(--ctp-text);
@@ -70,7 +71,7 @@ table {
   border-radius: 10px;
   overflow: hidden;
   overflow-y: scroll;
-  box-shadow: 0 0 30px var(--ctp-surface0);
+  box-shadow: 0 0 30px var(--ctp-mantle);
 }
 table::-webkit-scrollbar {
   width: 8px;

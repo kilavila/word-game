@@ -1,5 +1,6 @@
 import {
-  InfoBox,
+  InfoBoxUI,
+  GameOverUI,
   Heart1,
   Heart2,
   Heart3,
@@ -113,8 +114,7 @@ const RemoveHeart = () => {
 }
 
 const GameSummary = () => {
-  // TODO: Show game summary
-  // completed words, failed words, points
+  GameOverUI.classList.remove('hidden');
 }
 
 const GameOver = () => {
@@ -132,7 +132,7 @@ const GameReset = () => {
   GameState.userInput = '';
   GameState.lives = 3;
 
-  InfoBox.classList.add('hidden');
+  InfoBoxUI.classList.add('hidden');
   Heart1.classList.add('nf-fa-heart');
   Heart1.classList.remove('nf-md-heart_broken');
   Heart2.classList.add('nf-fa-heart');
