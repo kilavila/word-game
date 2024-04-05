@@ -2,7 +2,7 @@ import _gs, { GameReset } from './state.js';
 import KeysListener from './keys.js';
 import { StartButton, Canvas } from './constants.js';
 import WordList from './word-list.js';
-import Word from './word.js';
+import WordEntry from './word.js';
 import Colors from './color-list.js';
 
 const StartGame = () => {
@@ -16,7 +16,7 @@ const StartGame = () => {
     const color = Colors[Math.floor(Math.random() * Colors.length)];
     const difficulty = _gs.selectedDifficulty;
 
-    const word = new Word(randomWord, positionLeft, fontSize, color, difficulty);
+    const word = new WordEntry(randomWord, positionLeft, fontSize, color, difficulty);
     Canvas.append(word);
   }, 2500);
 }
@@ -27,7 +27,7 @@ StartButton.addEventListener('click', () => {
 
 KeysListener();
 
-customElements.define('word-entry', Word);
+customElements.define('word-entry', WordEntry);
 
 particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
   console.log('callback - particles.js config loaded');

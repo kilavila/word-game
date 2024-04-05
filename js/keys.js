@@ -53,7 +53,7 @@ const CheckWords = () => {
 const WordCompleted = (word) => {
   let activeWordPoints = word.self.word.length * _gs.multiplier;
 
-  SetWordCompleted(word.self.word, activeWordPoints);
+  SetWordCompleted(word.self.word, activeWordPoints, _gs.multiplier);
 
   let pointsDiv = document.createElement('div');
   pointsDiv.classList.add('points');

@@ -27,9 +27,12 @@
   <div id="particles-js"></div>
 
   <div class="info">
-    <h1 class="title">
-      <code>Word</code> Game
-    </h1>
+    <div class="info-header">
+      <img src="assets/favicon/favicon-32x32.png" class="logo" alt="logo">
+      <h1 class="title">
+        <code>Word</code> Game
+      </h1>
+    </div>
     <p class="info-text">
       <code>Enter</code> / <code>Space</code> to clear a word from the screen, <code>Backspace</code> to remove a
       letter.
@@ -47,33 +50,20 @@
     <table>
       <thead>
         <tr>
-          <th>Word</th>
-          <th>Points</th>
-          <th>Multiplier</th>
-          <th>Definition</th>
+          <th class="text-left">Word</th>
+          <th class="text-right">Points</th>
+          <th class="text-right">Multiplier</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td class="text-left">NA</td>
-          <td class="text-right">1</td>
-          <td class="text-right">2</td>
-          <td class="text-left">NA</td>
-        </tr>
+      <tbody class="word-summary">
       </tbody>
       <tfoot>
         <tr>
           <th class="text-left">
-            Final score
-          </th>
-          <th class="text-right green">
-            0
+            Final score: <span class="final-score green">0</span>
           </th>
           <th class="text-left">
-            Completed words
-          </th>
-          <th class="text-right green">
-            0
+            Completed words: <span class="final-words-count green">0</span>
           </th>
         </tr>
       </tfoot>

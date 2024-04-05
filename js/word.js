@@ -1,6 +1,6 @@
-import _gs, { RemoveHeart, SetWordFailed } from './state.js';
+import _gs, { SetWordFailed } from './state.js';
 
-class Word extends HTMLElement {
+class WordEntry extends HTMLElement {
 
   constructor(word, positionLeft, fontSize, color, difficulty) {
     self = super();
@@ -45,4 +45,4 @@ class Word extends HTMLElement {
 
 }
 
-export default Word;
+export default WordEntry;

@@ -3,6 +3,7 @@ const DictionaryAPI = 'https://api.dictionaryapi.dev/api/v2/entries/en'; // => /
 const Canvas = document.querySelector("body");
 const InfoBoxUI = document.querySelector(".info");
 const GameOverUI = document.querySelector(".game-over");
+const GameSummaryUI = document.querySelector(".word-summary");
 const StartButton = document.querySelector(".start-btn");
 const Heart1 = document.querySelector(".life-1");
 const Heart2 = document.querySelector(".life-2");
@@ -17,6 +18,7 @@ export {
   Canvas,
   InfoBoxUI,
   GameOverUI,
+  GameSummaryUI,
   StartButton,
   Heart1,
   Heart2,

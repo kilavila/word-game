@@ -99,11 +99,17 @@ thead {
   top: -1px;
   background: var(--ctp-surface2);
 }
+thead tr th {
+  width: 33.3333367%;
+}
 tfoot {
   position: sticky;
   bottom: -1px;
   background: var(--ctp-surface0);
   border-top: 2px solid var(--ctp-surface2);
+}
+tfoot tr th {
+  width: 50%;
 }
 tbody {
   white-space: nowrap;
@@ -119,6 +125,7 @@ th {
   padding: 16px;
 }
 td {
+  width: 33.3333367%;
   margin: 0;
   padding: 16px;
 }
@@ -140,6 +147,18 @@ td {
   align-items: center;
   flex-direction: column;
   text-align: center;
+}
+
+.info .info-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.info .logo {
+  width: 48px;
+  height: 48px;
+  margin-right: 32px;
 }
 
 .info h1 {

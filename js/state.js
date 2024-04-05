@@ -6,6 +6,7 @@ import {
   Heart3,
   PointsCounter,
   WordCounter,
+  GameSummaryUI,
 } from './constants.js';
 
 const Difficulties = {
@@ -65,7 +66,7 @@ const DecreaseDifficulty = () => {
   }
 }
 
-const SetWordCompleted = (word, points) => {
+const SetWordCompleted = (word, points, multiplier) => {
   GameState.points += points;
   GameState.completedWordsCount++;
   GameState.multiplierController++;
@@ -78,7 +79,7 @@ const SetWordCompleted = (word, points) => {
   PointsCounter.innerText = GameState.points;
   WordCounter.innerText = GameState.completedWordsCount;
 
-  GameState.completedWords.push(word);
+  GameState.completedWords.push({ word, points, multiplier });
 }
 
 const SetWordFailed = (word) => {
@@ -86,7 +87,7 @@ const SetWordFailed = (word) => {
 
   RemoveHeart();
   GameState.failedWords.push(word);
-}
+} 
 
 const RemoveHeart = () => {
   GameState.lives--;
@@ -115,6 +116,18 @@ const RemoveHeart = () => {
 
 const GameSummary = () => {
   GameOverUI.classList.remove('hidden');
+
+  GameState.completedWords.map((item) => {
+    let tr = document.createElement('tr');
+    tr.classList.add('word-summary-tr');
+    tr.innerHTML = `
+      <td class="text-left">${item.word}</td>
+      <td class="text-right">${item.points}</td>
+      <td class="text-right">${item.multiplier}</td>
+    `;
+
+    GameSummaryUI.append(tr);
+  });
 }
 
 const GameOver = () => {
