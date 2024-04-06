@@ -4,6 +4,7 @@ import { StartButton, Canvas } from './constants.js';
 import WordList from './word-list.js';
 import WordEntry from './word.js';
 import Colors from './color-list.js';
+import Multiplier from './multiplier.js';
 
 const StartGame = () => {
   GameReset();
@@ -23,11 +24,11 @@ const StartGame = () => {
 
 StartButton.addEventListener('click', () => {
   StartGame();
+  KeysListener();
 });
 
-KeysListener();
-
 customElements.define('word-entry', WordEntry);
+customElements.define('game-multiplier', Multiplier);
 
 particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
   console.log('callback - particles.js config loaded');

@@ -7,7 +7,11 @@ import {
   PointsCounter,
   WordCounter,
   GameSummaryUI,
+  GameSummaryPoints,
+  GameSummaryWords,
+  Popups,
 } from './constants.js';
+import Multiplier from './multiplier.js';
 
 const Difficulties = {
   easy: {
@@ -38,12 +42,25 @@ let GameState = {
   multiplier: 1,
 };
 
-const IncreaseDifficulty = () => {
-  GameState.multiplier += 0.5;
+const MultiplierMessage = () => {
+  const multiplier = new Multiplier(GameState.multiplier);
+  Popups.append(multiplier);
+}
 
-  if (GameState.selectedDifficulty.name === 'hard') {
-    return;
+const ChangeMultiplier = (increment) => {
+  if (increment) {
+    GameState.multiplier += 0.5;
+    MultiplierMessage();
   }
+
+  if (!increment && GameState.multiplier > 1) {
+    GameState.multiplier -= 0.5;
+    MultiplierMessage();
+  }
+}
+
+const IncreaseDifficulty = () => {
+  ChangeMultiplier(true);
 
   if (GameState.selectedDifficulty.name === 'easy') {
     GameState.selectedDifficulty = Difficulties.medium;
@@ -53,16 +70,12 @@ const IncreaseDifficulty = () => {
 }
 
 const DecreaseDifficulty = () => {
-  if (GameState.selectedDifficulty.name === 'easy') {
-    return;
-  }
-
-  GameState.multiplier -= 0.5;
-
   if (GameState.selectedDifficulty.name === 'medium') {
     GameState.selectedDifficulty = Difficulties.easy;
+    ChangeMultiplier(false);
   } else if (GameState.selectedDifficulty.name === 'hard') {
     GameState.selectedDifficulty = Difficulties.medium;
+    ChangeMultiplier(false);
   }
 }
 
@@ -83,10 +96,11 @@ const SetWordCompleted = (word, points, multiplier) => {
 }
 
 const SetWordFailed = (word) => {
-  GameState.multiplierController++;
-
-  RemoveHeart();
+  GameState.multiplierController = 0;
   GameState.failedWords.push(word);
+
+  DecreaseDifficulty();
+  RemoveHeart();
 } 
 
 const RemoveHeart = () => {
@@ -116,6 +130,9 @@ const RemoveHeart = () => {
 
 const GameSummary = () => {
   GameOverUI.classList.remove('hidden');
+
+  GameSummaryPoints.innerText = GameState.points;
+  GameSummaryWords.innerText = GameState.completedWordsCount;
 
   GameState.completedWords.map((item) => {
     let tr = document.createElement('tr');
@@ -156,6 +173,7 @@ const GameReset = () => {
 
 export default GameState;
 export {
+  ChangeMultiplier,
   IncreaseDifficulty,
   DecreaseDifficulty,
   SetWordCompleted,

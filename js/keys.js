@@ -1,26 +1,39 @@
-import _gs, { SetWordCompleted } from './state.js';
+import _gs, { ChangeMultiplier, SetWordCompleted } from './state.js';
 import {
   Canvas,
   InputUI,
 } from './constants.js';
 
 const KeysListener = () => {
+
   Canvas.addEventListener('keydown', (event) => {
     event.preventDefault();
 
-    if (event.key === 'Enter' || event.key === ' ') {
+    console.log(event);
+
+    let Key = event.key;
+    let ControlPressed = event.ctrlKey;
+
+    if (Key === 'Enter' || Key === ' ') {
+      let correctWordsCounter = 0;
+
       _gs.visibleWords.map(word => {
         if (!word.completed) {
           if (word.self.word === _gs.userInput) {
+            correctWordsCounter++;
             WordCompleted(word);
           }
         }
       });
-    } else if (event.key === 'Backspace') {
-      RemoveChar();
+
+      if (correctWordsCounter === 0) {
+        ChangeMultiplier(false);
+      }
+    } else if (Key === 'Backspace') {
+      ControlPressed ? ClearInput() : RemoveChar();
     } else {
-      if (event.key.length === 1) {
-        AddChar(event.key);
+      if (Key.length === 1) {
+        AddChar(Key);
       }
     }
   });
@@ -31,6 +44,11 @@ const RemoveChar = () => {
   InputUI.innerText = _gs.userInput;
 
   CheckWords();
+}
+
+const ClearInput = () => {
+  _gs.userInput = '';
+  InputUI.innerText = '';
 }
 
 const AddChar = (key) => {
@@ -68,8 +86,7 @@ const WordCompleted = (word) => {
 
   _gs.visibleWords = _gs.visibleWords.filter(w => w.self !== word.self);
 
-  _gs.userInput = '';
-  InputUI.innerText = '';
+  ClearInput();
 }
 
 export default KeysListener;
