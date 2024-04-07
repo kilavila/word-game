@@ -23,33 +23,35 @@
 <body>
 
   <script src="assets/particles.js-master/particles.js"></script>
-
   <div id="particles-js"></div>
 
-  <div class="popups">
-  </div>
-
   <div class="info">
+
     <div class="info-header">
       <img src="assets/favicon/favicon-32x32.png" class="logo" alt="logo">
       <h1 class="title">
         <code>Word</code> Game
       </h1>
     </div>
+
     <p class="info-text">
       <code>Enter</code> / <code>Space</code> to clear a word from the screen, <code>Backspace</code> to remove a
       letter.
       You have <code>3</code> lives, you lose a life for each word that reaches the bottom of the screen.
     </p>
+
     <button class="start-btn">START</button>
+
     <p class="info-text small">
-      The words in this game(6561 words) is from a list of the most used passwords.<br>
-      If you see one of your passwords here, you should really change it!
+      The 6561 words in this game is from a list of the most used passwords.
     </p>
+
   </div>
 
   <div class="game-over hidden">
+
     <h1 class="title">Game Over!</h1>
+
     <table>
       <thead>
         <tr>
@@ -71,11 +73,38 @@
         </tr>
       </tfoot>
     </table>
+
     <button class="start-btn">RESTART</button>
+
+    <div class="personal-best"></div>
+
+  </div>
+
+  <div class="popups">
+
+      <div class="progress">
+        <div class="progress-value">
+          <span class="progress-text-left">10</span> / <span class="progress-text-right">20</span>
+        </div>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner"></div>
+        </div>
+      </div>
+
+    <!-- <div class="message">
+      <div class="message-header">
+        <small>x</small>2.5
+      </div>
+      <div class="message-body">
+        <span class="message-text">
+          MULTIPLIER
+        </span>
+      </div>
+    </div> -->
+
   </div>
 
   <div class="lives">
-    <!-- <div>Lives</div> -->
     <div class="hearts">
       <i class="nf nf-fa-heart life-1"></i>
       <i class="nf nf-fa-heart life-2"></i>

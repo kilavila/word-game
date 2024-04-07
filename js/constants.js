@@ -6,6 +6,7 @@ const GameOverUI = document.querySelector(".game-over");
 const GameSummaryUI = document.querySelector(".word-summary");
 const GameSummaryPoints = document.querySelector(".final-score");
 const GameSummaryWords = document.querySelector(".final-words-count");
+const PersonalBestUI = document.querySelector(".personal-best");
 const StartButton = document.querySelector(".start-btn");
 const Popups = document.querySelector('.popups');
 const Heart1 = document.querySelector(".life-1");
@@ -24,6 +25,7 @@ export {
   GameSummaryUI,
   GameSummaryPoints,
   GameSummaryWords,
+  PersonalBestUI,
   StartButton,
   Popups,
   Heart1,

@@ -1,0 +1,36 @@
+.word {
+  display: block;
+  position: absolute;
+  top: 100%;
+  transform: translate(-50%, 0%);
+  font-family: "Krypton", monospace;
+  opacity: 0.5;
+}
+.easy {
+  animation: unsolved var(--time-easy) linear;
+}
+.medium {
+  animation: unsolved var(--time-medium) linear;
+}
+.hard {
+  animation: unsolved var(--time-hard) linear;
+}
+.word.active {
+  opacity: 1;
+  color: var(--ctp-text) !important;
+}
+.word.correct {
+  color: var(--ctp-green) !important;
+  opacity: 0.00000001;
+  transition-duration: 1s;
+}
+.word .points {
+  position: relative;
+  top: -72px;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--ctp-green);
+  opacity: 1;
+  animation: points 0.25s linear;
+}

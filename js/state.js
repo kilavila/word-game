@@ -12,6 +12,7 @@ import {
   Popups,
 } from './constants.js';
 import Multiplier from './multiplier.js';
+import CheckPersonalBest from './personal-best.js';
 
 const Difficulties = {
   easy: {
@@ -154,6 +155,13 @@ const GameOver = () => {
     word.self.remove();
   });
 
+  const lastGame = {
+    wordlist: GameState.completedWords,
+    points: GameState.points,
+    words: GameState.completedWordsCount,
+  };
+
+  CheckPersonalBest(lastGame);
   GameSummary();
 }
 

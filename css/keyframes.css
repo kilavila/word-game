@@ -1,0 +1,40 @@
+@keyframes points {
+  0% {
+    top: -48px;
+    opacity: 0.00000001;
+  }
+  100% {
+    top: -72px;
+    opacity: 1;
+  }
+}
+
+@keyframes unsolved {
+  0% {
+    top: -5%;
+    /* color: var(--ctp-blue); */
+  }
+  100% {
+    top: 95%;
+    color: var(--ctp-red);
+  }
+}
+
+@keyframes multiplier {
+  0% {
+    top: 100px;
+    opacity: 0.00000001;
+  }
+  7% {
+    top: 0px;
+    opacity: 1;
+  }
+  90% {
+    top: 0px;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    opacity: 0.00000001;
+  }
+}
