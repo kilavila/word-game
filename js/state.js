@@ -37,7 +37,7 @@ const Difficulties = {
 
 let GameState = {
   gameInterval: null,
-  selectedDifficulty: Difficulties.hard,
+  currentDifficulty: Difficulties.hard,
   visibleWords: [],
   completedWords: [],
   completedWordsCount: 0,
@@ -90,19 +90,19 @@ const ChangeMultiplier = (increment) => {
 const IncreaseDifficulty = () => {
   ChangeMultiplier(true);
 
-  if (GameState.selectedDifficulty.name === 'easy') {
-    GameState.selectedDifficulty = Difficulties.medium;
-  } else if (GameState.selectedDifficulty.name === 'medium') {
-    GameState.selectedDifficulty = Difficulties.hard;
+  if (GameState.currentDifficulty.name === 'easy') {
+    GameState.currentDifficulty = Difficulties.medium;
+  } else if (GameState.currentDifficulty.name === 'medium') {
+    GameState.currentDifficulty = Difficulties.hard;
   }
 }
 
 const DecreaseDifficulty = () => {
-  if (GameState.selectedDifficulty.name === 'medium') {
-    GameState.selectedDifficulty = Difficulties.easy;
+  if (GameState.currentDifficulty.name === 'medium') {
+    GameState.currentDifficulty = Difficulties.easy;
     ChangeMultiplier(false);
-  } else if (GameState.selectedDifficulty.name === 'hard') {
-    GameState.selectedDifficulty = Difficulties.medium;
+  } else if (GameState.currentDifficulty.name === 'hard') {
+    GameState.currentDifficulty = Difficulties.medium;
     ChangeMultiplier(false);
   }
 }
