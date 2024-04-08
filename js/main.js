@@ -37,6 +37,6 @@ customElements.define('game-multiplier', Multiplier);
 customElements.define('multiplier-controller', MultiplierController);
 
 // PERFORMANCE: Find a better library for background animations!
-// particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
-//   console.log('callback - particles.js config loaded');
-// });
+particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
+  console.log('callback - particles.js config loaded');
+});
