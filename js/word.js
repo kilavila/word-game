@@ -2,7 +2,7 @@ import _gs, { SetWordFailed } from './state.js';
 
 class WordEntry extends HTMLElement {
 
-  constructor(word, positionLeft, fontSize, color, difficulty) {
+  constructor(word, positionLeft, fontSize, color, difficulty, type) {
     self = super();
 
     this.completed = false;
@@ -12,6 +12,8 @@ class WordEntry extends HTMLElement {
     this.fontSize = fontSize;
     this.color = color;
     this.difficulty = difficulty;
+    // TODO: Add types for different word types(e.g. normal, heart, multiplier, challenge, clear screen etc)
+    // this.type = type;
   }
 
   connectedCallback() {

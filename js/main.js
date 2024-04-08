@@ -1,6 +1,6 @@
 import _gs, { GameReset } from './state.js';
 import KeysListener from './keys.js';
-import { StartButton, Canvas } from './constants.js';
+import { StartButton, Canvas, Popups } from './constants.js';
 import WordList from './word-list.js';
 import WordEntry from './word.js';
 import Colors from './color-list.js';
@@ -9,6 +9,9 @@ import MultiplierController from './multiplier-controller.js';
 
 const StartGame = () => {
   GameReset();
+  
+  _gs.multiplierController = new MultiplierController();
+  Popups.append(_gs.multiplierController);
 
   _gs.gameInterval = setInterval(() => {
     // TODO: Make new WordLists for each difficulty..
@@ -37,6 +40,6 @@ customElements.define('game-multiplier', Multiplier);
 customElements.define('multiplier-controller', MultiplierController);
 
 // PERFORMANCE: Find a better library for background animations!
-particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
-  console.log('callback - particles.js config loaded');
-});
+// particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
+//   console.log('callback - particles.js config loaded');
+// });

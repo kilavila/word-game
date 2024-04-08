@@ -1,4 +1,4 @@
-import _gs, { ChangeMultiplier, MultiplierProgressController, SetWordCompleted } from './state.js';
+import _gs, { SetWordCompleted } from './state.js';
 import {
   Canvas,
   InputUI,
@@ -25,7 +25,7 @@ const KeysListener = () => {
       });
 
       if (correctWordsCounter === 0) {
-        MultiplierProgressController(0);
+        // MultiplierProgressController(0);
       }
     } else if (Key === 'Backspace') {
       ControlPressed ? ClearInput() : RemoveChar();
