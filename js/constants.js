@@ -15,6 +15,9 @@ const Heart3 = document.querySelector(".life-3");
 const InputUI = document.querySelector(".user-input");
 const PointsCounter = document.querySelector(".points-count");
 const WordCounter = document.querySelector(".completed-words-count");
+const MultiplierProgress = document.querySelector(".progress-text-left");
+const MultiplierProgressBar = document.querySelector(".progress-bar-inner");
+const CurrentMultiplier = document.querySelector(".current-multiplier");
 
 export {
   DictionaryAPI,
@@ -34,4 +37,7 @@ export {
   InputUI,
   PointsCounter,
   WordCounter,
+  MultiplierProgress,
+  MultiplierProgressBar,
+  CurrentMultiplier,
 };

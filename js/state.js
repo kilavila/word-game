@@ -10,9 +10,15 @@ import {
   GameSummaryPoints,
   GameSummaryWords,
   Popups,
+  MultiplierProgress,
+  MultiplierProgressBar,
+  CurrentMultiplier,
 } from './constants.js';
-import Multiplier from './multiplier.js';
+import Multiplier from './multiplier.js'; // TODO: Rename MultiplierMessage
 import CheckPersonalBest from './personal-best.js';
+
+// WARN: Refactor before adding new functionality!
+// TODO: Move functions like GameOver and GameReset to new file!
 
 const Difficulties = {
   easy: {
@@ -42,6 +48,27 @@ let GameState = {
   multiplierController: 0,
   multiplier: 1,
 };
+
+// FIXME: Create a new file for this? MultiplierController class?
+const MultiplierProgressController = (value) => {
+  if (value === 1) {
+    GameState.multiplierController++;
+  } else if (value === -1) {
+    GameState.multiplierController = 0;
+    DecreaseDifficulty();
+  } else if (value === 0) {
+    GameState.multiplierController = 0;
+  }
+
+  if (GameState.multiplierController === 20) {
+    GameState.multiplierController = 0;
+    IncreaseDifficulty();
+  }
+
+  MultiplierProgress.innerText = GameState.multiplierController;
+  MultiplierProgressBar.style.width = `${GameState.multiplierController * 5}%`;
+  CurrentMultiplier.innerText = GameState.multiplier;
+}
 
 const MultiplierMessage = () => {
   const multiplier = new Multiplier(GameState.multiplier);
@@ -83,12 +110,8 @@ const DecreaseDifficulty = () => {
 const SetWordCompleted = (word, points, multiplier) => {
   GameState.points += points;
   GameState.completedWordsCount++;
-  GameState.multiplierController++;
 
-  if (GameState.multiplierController === 20) {
-    GameState.multiplierController = 0;
-    IncreaseDifficulty();
-  }
+  MultiplierProgressController(1);
 
   PointsCounter.innerText = GameState.points;
   WordCounter.innerText = GameState.completedWordsCount;
@@ -97,13 +120,13 @@ const SetWordCompleted = (word, points, multiplier) => {
 }
 
 const SetWordFailed = (word) => {
-  GameState.multiplierController = 0;
   GameState.failedWords.push(word);
 
-  DecreaseDifficulty();
+  MultiplierProgressController(-1);
   RemoveHeart();
 } 
 
+// TODO: Refactor Hearts logic in order to more easily remove hearts and add new hearts when needed!
 const RemoveHeart = () => {
   GameState.lives--;
 
@@ -181,6 +204,7 @@ const GameReset = () => {
 
 export default GameState;
 export {
+  MultiplierProgressController,
   ChangeMultiplier,
   IncreaseDifficulty,
   DecreaseDifficulty,

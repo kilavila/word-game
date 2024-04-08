@@ -31,15 +31,19 @@ table::-webkit-scrollbar {
   width: 8px;
 }
 table::-webkit-scrollbar-track {
-  background: var(--ctp-surface0);
+  background: var(--ctp-surface2);
   border-radius: 10px;
 }
-table::-webkit-scrollbar-thumb {
+table::-webkit-scrollbar-track:hover {
   background: var(--ctp-surface1);
-  border-radius: 0 10px 10px 0;
+}
+table::-webkit-scrollbar-thumb {
+  min-height: 64px;
+  background: var(--ctp-blue);
+  border-radius: 10px;
 }
 table::-webkit-scrollbar-thumb:hover {
-  background: var(--ctp-surface2);
+  background: var(--ctp-peach);
 }
 thead,
 tbody,

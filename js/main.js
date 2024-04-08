@@ -10,6 +10,8 @@ const StartGame = () => {
   GameReset();
 
   _gs.gameInterval = setInterval(() => {
+    // TODO: Make new WordLists for each difficulty..
+    // Create new difficulties and additional challenge words
     const randomWord = WordList[Math.floor(Math.random() * WordList.length)];
 
     const positionLeft = Math.floor(Math.random() * 50) + 25;
@@ -30,6 +32,7 @@ StartButton.addEventListener('click', () => {
 customElements.define('word-entry', WordEntry);
 customElements.define('game-multiplier', Multiplier);
 
-particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
-  console.log('callback - particles.js config loaded');
-});
+// PERFORMANCE: Find a better library for background animations!
+// particlesJS.load('particles-js', 'assets/particlesjs-config.json', function() {
+//   console.log('callback - particles.js config loaded');
+// });
