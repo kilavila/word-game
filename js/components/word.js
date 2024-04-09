@@ -1,9 +1,9 @@
-import _gs, { SetWordFailed } from './state.js';
+import _gs from '/js/main.js';
 
-class WordEntry extends HTMLElement {
+class Word extends HTMLElement {
 
-  constructor(word, positionLeft, fontSize, color, difficulty, type) {
-    self = super();
+  constructor(word, positionLeft, fontSize, color, difficulty) {
+    super();
 
     this.completed = false;
     this.timer = null;
@@ -12,7 +12,7 @@ class WordEntry extends HTMLElement {
     this.fontSize = fontSize;
     this.color = color;
     this.difficulty = difficulty;
-    // TODO: Add types for different word types(e.g. normal, heart, multiplier, challenge, clear screen etc)
+    // TODO: Add types for different word types(e.g. normal, heart, multiplier, challenge, clear screen etc)? or new class?
     // this.type = type;
   }
 
@@ -36,15 +36,15 @@ class WordEntry extends HTMLElement {
   counter() {
     this.timer = setTimeout(() => {
       if (!this.completed) {
-        SetWordFailed(self.word);
+        _gs.wordFailed(self.word);
       }
 
-      self.remove()
+      this.remove()
     }, 1000 * this.difficulty.time);
 
-    _gs.visibleWords.push({ self, timer: this.timer });
+    _gs.visibleWords.push({ element: this, timer: this.timer });
   }
 
 }
 
-export default WordEntry;
+export default Word;

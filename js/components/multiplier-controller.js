@@ -44,12 +44,14 @@ class MultiplierController extends HTMLElement {
   increaseDifficulty() {
     this.multiplier += 0.5;
     // TODO: Set up new difficulty logic!
+    // maximum multiplier and difficulty?
   }
 
   decreaseDifficulty() {
     this.multiplier -= 0.5;
     this.resetCounter();
     // TODO: Set up new difficulty logic!
+    // minimum multiplier and difficulty logic
   }
 
   render() {

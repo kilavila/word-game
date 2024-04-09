@@ -1,9 +1,7 @@
-import _gs, { SetWordCompleted } from './state.js';
-import {
-  Canvas,
-  InputUI,
-} from './constants.js';
+import _gs from './main.js';
+import { Canvas, InputUI } from './static/constants.js';
 
+// TODO: Refactor functions! Move functions to new files..
 const KeysListener = () => {
 
   Canvas.addEventListener('keydown', (event) => {
@@ -25,6 +23,7 @@ const KeysListener = () => {
       });
 
       if (correctWordsCounter === 0) {
+        // FIX: Add functionality from new state!
         // MultiplierProgressController(0);
       }
     } else if (Key === 'Backspace') {
@@ -69,7 +68,7 @@ const CheckWords = () => {
 const WordCompleted = (word) => {
   let activeWordPoints = word.self.word.length * _gs.multiplier;
 
-  SetWordCompleted(word.self.word, activeWordPoints, _gs.multiplier);
+  _gs.wordCompleted(word.self.word, activeWordPoints, _gs.multiplier);
 
   let pointsDiv = document.createElement('div');
   pointsDiv.classList.add('points');
@@ -78,6 +77,7 @@ const WordCompleted = (word) => {
   word.self.classList.add('correct');
   word.self.appendChild(pointsDiv);
 
+  // FIX: Updated word class, no 'self' in class!
   word.self.completed = true;
   clearTimeout(word.timer);
   setTimeout(() => word.self.remove(), 750);

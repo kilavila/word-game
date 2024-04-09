@@ -1,5 +1,6 @@
-import { PersonalBestUI } from './constants.js';
+import { PersonalBestUI } from './static/constants.js';
 
+// NOTE: Add new classes for highlighting new records?
 const RenderPersonalBest = (PB) => {
   PersonalBestUI.innerHTML = `
     <h2>Personal Best</h2>
