@@ -12,11 +12,14 @@ let _gs;
 
 // TODO: Add music
 const StartGame = () => {
-  _gs = new GameState();
+  const difficulty = _gs.currentDifficulty;
+
+  _gs = new GameState(difficulty);
   
   _gs.multiplierController = new MultiplierController();
   Popups.append(_gs.multiplierController);
 
+  // FIX: Move interval to game state class!
   _gs.gameInterval = setInterval(() => {
     // TODO: Make new WordLists for each difficulty..
     // Create new difficulties and additional challenge words
@@ -28,7 +31,6 @@ const StartGame = () => {
     const color = Colors[Math.floor(Math.random() * Colors.length)];
 
     // TODO: Create user input for selecting difficulty!
-    const difficulty = _gs.currentDifficulty;
 
     const word = new Word(randomWord, positionLeft, fontSize, color, difficulty);
     Canvas.append(word);

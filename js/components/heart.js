@@ -19,7 +19,7 @@ class Heart extends HTMLElement {
   // FIX: Render hearts..
   render() {
     this.innerHTML = `
-      <i class="nf ${this.lost ? 'nf-md-heart_broken' : 'nf-fa-heart'}"></i>
+      <i class="nf ${ this.lost ? 'nf-md-heart_broken' : 'nf-fa-heart' }"></i>
     `;
   }
 
