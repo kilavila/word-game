@@ -15,7 +15,7 @@ const StartGame = () => {
   const difficulty = _gs.currentDifficulty;
 
   _gs = new GameState(difficulty);
-  
+
   _gs.multiplierController = new MultiplierController();
   Popups.append(_gs.multiplierController);
 
